@@ -9,3 +9,7 @@ class Config:
     MONGODB_COLLECTION = os.getenv('MONGODB_COLLECTION', 'documents')
     UPLOAD_FOLDER = 'uploads'
     ALLOWED_EXTENSIONS = {'pdf'}
+
+    def __init__(self):
+        if not self.MONGODB_URI:
+            raise ValueError("MONGODB_URI is not set in the environment variables.")
