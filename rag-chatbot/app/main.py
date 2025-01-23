@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from app.api.routes import api
 from app.config import Config
 import os
@@ -12,5 +12,12 @@ def create_app():
 
     # Register blueprints
     app.register_blueprint(api, url_prefix='/api')
+
+    @app.route('/')
+    def root():
+        return jsonify({
+            'message': 'Welcome to RAG Chatbot',
+            'api_prefix': '/api'
+        })
 
     return app
